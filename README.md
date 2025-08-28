@@ -8,6 +8,13 @@ O FinancePlus é uma solução completa para gerenciar suas finanças pessoais d
 
 ## ✨ Funcionalidades
 
+### 🔐 **Sistema de Autenticação**
+- **Login Seguro**: Autenticação com email e senha
+- **Cadastro de Usuários**: Criação de contas personalizadas
+- **Logout Automático**: Sempre força novo login ao reiniciar o app
+- **Persistência de Sessão**: Mantém usuário logado durante o uso
+- **Validação de Campos**: Verificação de dados obrigatórios
+
 ### 🏠 **Tela Principal (Home)**
 - **Dashboard Financeiro**: Visualização rápida do saldo total
 - **Indicadores de Crescimento**: Acompanhamento da evolução financeira mensal
@@ -33,6 +40,7 @@ O FinancePlus é uma solução completa para gerenciar suas finanças pessoais d
 - **Backup e Sincronização**: Proteção e sincronização de dados
 - **Exportação**: Relatórios em diferentes formatos
 - **Tema**: Suporte a modo claro/escuro
+- **Logout**: Sair da conta com confirmação
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -42,6 +50,8 @@ O FinancePlus é uma solução completa para gerenciar suas finanças pessoais d
 - **Expo Router** - Sistema de navegação baseado em arquivos
 - **React Native Vector Icons** - Biblioteca de ícones
 - **StyleSheet** - Estilização nativa para performance
+- **AsyncStorage** - Persistência local de dados
+- **Context API** - Gerenciamento de estado global
 
 ## 🚀 Como Executar
 
@@ -76,6 +86,10 @@ O FinancePlus é uma solução completa para gerenciar suas finanças pessoais d
    - Pressione `i` para abrir no simulador iOS
    - Pressione `a` para abrir no emulador Android
 
+### 🔑 Credenciais de Teste
+- **Email**: `teste@email.com`
+- **Senha**: `123456`
+
 ## 📱 Estrutura do Projeto
 
 ```
@@ -83,6 +97,15 @@ FinancePlus/
 ├── app/                          # Diretório principal da aplicação
 │   ├── _layout.tsx              # Layout raiz com Stack Navigator
 │   ├── +not-found.tsx           # Tela de erro 404
+│   ├── contexts/                 # Contextos da aplicação
+│   │   └── AuthContext.tsx      # Contexto de autenticação
+│   ├── components/               # Componentes reutilizáveis
+│   │   └── LoadingScreen.tsx    # Tela de carregamento
+│   ├── (auth)/                  # Sistema de autenticação
+│   │   ├── _layout.tsx          # Layout das telas de auth
+│   │   ├── index.tsx            # Redirecionamento para login
+│   │   ├── login.tsx            # Tela de login
+│   │   └── signup.tsx           # Tela de cadastro
 │   └── (tabs)/                  # Navegação por abas
 │       ├── _layout.tsx          # Layout das abas principais
 │       ├── (home)/              # Grupo de telas da home
@@ -99,28 +122,51 @@ FinancePlus/
 └── tsconfig.json               # Configuração do TypeScript
 ```
 
+## 🔐 Sistema de Autenticação
+
+### Fluxo de Login
+1. **App Inicia** → Redireciona para tela de login
+2. **Usuário Digita Credenciais** → Validação de campos
+3. **Autenticação** → Verificação de email/senha
+4. **Sucesso** → Navegação para dashboard principal
+5. **Erro** → Mensagem de erro com opção de tentar novamente
+
+### Funcionalidades de Segurança
+- **Validação de Senha**: Mínimo de 6 caracteres
+- **Confirmação de Senha**: Verificação de correspondência
+- **Logout Automático**: Sempre força novo login ao reiniciar
+- **Persistência Local**: Mantém sessão ativa durante o uso
+- **Logout Manual**: Botão de sair nas configurações
+
+### Telas de Autenticação
+- **Login**: Formulário de email e senha com validação
+- **Cadastro**: Formulário completo com nome, email e senha
+- **Validações**: Verificação de campos obrigatórios e formato
+- **Navegação**: Transição suave entre telas de auth
+
 ## 🎨 Design System
 
 ### Paleta de Cores
-- **Primária**: `#6366f1` (Índigo)
+- **Primária**: `#007AFF` (Azul iOS)
 - **Sucesso**: `#10b981` (Verde)
-- **Erro**: `#ef4444` (Vermelho)
+- **Erro**: `#FF3B30` (Vermelho iOS)
 - **Aviso**: `#f59e0b` (Âmbar)
-- **Neutro**: `#1e293b` (Slate)
-- **Background**: `#f8fafc` (Slate claro)
+- **Neutro**: `#8E8E93` (Cinza iOS)
+- **Background**: `#F2F2F7` (Cinza claro iOS)
 
 ### Tipografia
-- **Títulos**: 24px, 700 weight
-- **Subtítulos**: 18px, 700 weight
+- **Títulos**: 32px, 700 weight
+- **Subtítulos**: 16px, 400 weight
 - **Corpo**: 16px, 600 weight
 - **Legendas**: 14px, 500 weight
-- **Micro**: 12px, 500 weight
+- **Micro**: 12px, 400 weight
 
 ### Componentes
-- Cards com sombras e bordas arredondadas
-- Botões com estados de interação
-- Inputs com validação visual
+- Cards com sombras e bordas arredondadas (12px)
+- Botões com estados de interação e loading
+- Inputs com ícones e validação visual
 - Ícones semânticos para melhor UX
+- Tela de loading com spinner centralizado
 
 ## 🔧 Funcionalidades Técnicas
 
@@ -128,30 +174,37 @@ FinancePlus/
 - **Stack Navigator**: Para navegação entre telas relacionadas
 - **Tab Navigator**: Para navegação principal entre seções
 - **File-based Routing**: Sistema de roteamento baseado em arquivos
+- **Redirecionamento Inteligente**: Sempre vai para login primeiro
 
 ### Estado
 - **useState**: Gerenciamento de estado local
-- **Context API**: Preparado para estado global (futuro)
-- **AsyncStorage**: Para persistência local (futuro)
+- **Context API**: Estado global de autenticação
+- **AsyncStorage**: Persistência local de dados do usuário
+- **useEffect**: Controle de ciclo de vida dos componentes
 
 ### Performance
 - **StyleSheet**: Estilos otimizados para React Native
 - **ScrollView**: Rolagem suave com indicadores ocultos
 - **TouchableOpacity**: Feedback tátil responsivo
+- **KeyboardAvoidingView**: Adaptação automática ao teclado
 
 ## 📋 Roadmap
 
-### Versão 1.1
-- [ ] Implementar persistência local com AsyncStorage
-- [ ] Adicionar sistema de categorias personalizadas
-- [ ] Implementar busca e filtros de transações
+### Versão 1.1 ✅
+- [x] Sistema de autenticação completo
+- [x] Tela de login e cadastro
+- [x] Persistência local de sessão
+- [x] Validação de formulários
+- [x] Navegação protegida
 
 ### Versão 1.2
+- [ ] Implementar sistema de categorias personalizadas
+- [ ] Adicionar busca e filtros de transações
 - [ ] Sistema de metas financeiras
-- [ ] Relatórios e gráficos
-- [ ] Backup na nuvem
+- [ ] Relatórios e gráficos básicos
 
 ### Versão 1.3
+- [ ] Backup na nuvem
 - [ ] Múltiplas contas bancárias
 - [ ] Sincronização com APIs bancárias
 - [ ] Notificações push
