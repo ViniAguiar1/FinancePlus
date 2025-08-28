@@ -1,50 +1,183 @@
-# Welcome to your Expo app 👋
+# FinancePlus 💰
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Um aplicativo móvel moderno e intuitivo para controle financeiro pessoal, desenvolvido com React Native e Expo.
 
-## Get started
+## 📱 Sobre o Projeto
 
-1. Install dependencies
+O FinancePlus é uma solução completa para gerenciar suas finanças pessoais de forma simples e eficiente. Com uma interface moderna e funcionalidades essenciais, o app permite controlar receitas, despesas, transferências e acompanhar o histórico financeiro.
 
+## ✨ Funcionalidades
+
+### 🏠 **Tela Principal (Home)**
+- **Dashboard Financeiro**: Visualização rápida do saldo total
+- **Indicadores de Crescimento**: Acompanhamento da evolução financeira mensal
+- **Ações Rápidas**: Acesso direto às principais funcionalidades
+- **Resumo Mensal**: Visão geral de receitas e despesas
+- **Transações Recentes**: Histórico das últimas movimentações
+
+### ➕ **Gestão de Receitas**
+- Formulário intuitivo para adicionar receitas
+- Categorização automática (Salário, Freelance, Investimentos, Vendas)
+- Criação de categorias personalizadas
+- Validação de campos obrigatórios
+
+### 💸 **Controle de Despesas**
+- Registro detalhado de gastos
+- Sistema de categorização inteligente
+- Acompanhamento de padrões de consumo
+
+### ⚙️ **Configurações**
+- **Perfil do Usuário**: Personalização das informações
+- **Segurança**: Configurações de autenticação e biometria
+- **Notificações**: Controle de alertas e lembretes
+- **Backup e Sincronização**: Proteção e sincronização de dados
+- **Exportação**: Relatórios em diferentes formatos
+- **Tema**: Suporte a modo claro/escuro
+
+## 🛠️ Tecnologias Utilizadas
+
+- **React Native** - Framework para desenvolvimento mobile
+- **Expo** - Plataforma de desenvolvimento e build
+- **TypeScript** - Tipagem estática para maior confiabilidade
+- **Expo Router** - Sistema de navegação baseado em arquivos
+- **React Native Vector Icons** - Biblioteca de ícones
+- **StyleSheet** - Estilização nativa para performance
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+- Node.js (versão 18 ou superior)
+- npm ou yarn
+- Expo CLI (`npm install -g @expo/cli`)
+- Expo Go app no dispositivo móvel (para testes)
+
+### Instalação
+
+1. **Clone o repositório**
    ```bash
-   npm install
+   git clone <url-do-repositorio>
+   cd FinancePlus
    ```
 
-2. Start the app
+2. **Instale as dependências**
+   ```bash
+   npm install
+   # ou
+   yarn install
+   ```
 
+3. **Inicie o servidor de desenvolvimento**
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+4. **Execute no dispositivo**
+   - Escaneie o QR code com o Expo Go (Android/iOS)
+   - Pressione `i` para abrir no simulador iOS
+   - Pressione `a` para abrir no emulador Android
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📱 Estrutura do Projeto
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+FinancePlus/
+├── app/                          # Diretório principal da aplicação
+│   ├── _layout.tsx              # Layout raiz com Stack Navigator
+│   ├── +not-found.tsx           # Tela de erro 404
+│   └── (tabs)/                  # Navegação por abas
+│       ├── _layout.tsx          # Layout das abas principais
+│       ├── (home)/              # Grupo de telas da home
+│       │   ├── _layout.tsx      # Layout das telas da home
+│       │   ├── index.tsx        # Tela principal (Dashboard)
+│       │   ├── receita.tsx      # Tela de adicionar receita
+│       │   └── details.tsx      # Tela de detalhes
+│       └── settings.tsx         # Tela de configurações
+├── assets/                       # Recursos estáticos
+│   ├── fonts/                   # Fontes personalizadas
+│   └── images/                  # Imagens e ícones
+├── app.json                     # Configuração do Expo
+├── package.json                 # Dependências do projeto
+└── tsconfig.json               # Configuração do TypeScript
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🎨 Design System
 
-## Learn more
+### Paleta de Cores
+- **Primária**: `#6366f1` (Índigo)
+- **Sucesso**: `#10b981` (Verde)
+- **Erro**: `#ef4444` (Vermelho)
+- **Aviso**: `#f59e0b` (Âmbar)
+- **Neutro**: `#1e293b` (Slate)
+- **Background**: `#f8fafc` (Slate claro)
 
-To learn more about developing your project with Expo, look at the following resources:
+### Tipografia
+- **Títulos**: 24px, 700 weight
+- **Subtítulos**: 18px, 700 weight
+- **Corpo**: 16px, 600 weight
+- **Legendas**: 14px, 500 weight
+- **Micro**: 12px, 500 weight
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Componentes
+- Cards com sombras e bordas arredondadas
+- Botões com estados de interação
+- Inputs com validação visual
+- Ícones semânticos para melhor UX
 
-## Join the community
+## 🔧 Funcionalidades Técnicas
 
-Join our community of developers creating universal apps.
+### Navegação
+- **Stack Navigator**: Para navegação entre telas relacionadas
+- **Tab Navigator**: Para navegação principal entre seções
+- **File-based Routing**: Sistema de roteamento baseado em arquivos
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Estado
+- **useState**: Gerenciamento de estado local
+- **Context API**: Preparado para estado global (futuro)
+- **AsyncStorage**: Para persistência local (futuro)
+
+### Performance
+- **StyleSheet**: Estilos otimizados para React Native
+- **ScrollView**: Rolagem suave com indicadores ocultos
+- **TouchableOpacity**: Feedback tátil responsivo
+
+## 📋 Roadmap
+
+### Versão 1.1
+- [ ] Implementar persistência local com AsyncStorage
+- [ ] Adicionar sistema de categorias personalizadas
+- [ ] Implementar busca e filtros de transações
+
+### Versão 1.2
+- [ ] Sistema de metas financeiras
+- [ ] Relatórios e gráficos
+- [ ] Backup na nuvem
+
+### Versão 1.3
+- [ ] Múltiplas contas bancárias
+- [ ] Sincronização com APIs bancárias
+- [ ] Notificações push
+
+## 🤝 Contribuição
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 👨‍💻 Desenvolvedor
+
+**Vinicius Aguiar** - Desenvolvedor Full Stack
+
+## 📞 Suporte
+
+- **Email**: [seu-email@exemplo.com]
+- **GitHub**: [@seu-usuario]
+- **LinkedIn**: [seu-linkedin]
+
+---
+
+⭐ Se este projeto te ajudou, considere dar uma estrela no repositório!
