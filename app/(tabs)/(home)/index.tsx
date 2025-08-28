@@ -50,25 +50,29 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </Link>
 
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={[styles.actionIcon, { backgroundColor: "#ef4444" }]}>
-              <Ionicons name="remove" size={24} color="white" />
-            </View>
-            <Text style={styles.actionText}>Despesa</Text>
-          </TouchableOpacity>
+          <Link href="/despesas/despesas" asChild>
+            <TouchableOpacity style={styles.actionButton}>
+              <View style={[styles.actionIcon, { backgroundColor: "#ef4444" }]}>
+                <Ionicons name="remove" size={24} color="white" />
+              </View>
+              <Text style={styles.actionText}>Despesa</Text>
+            </TouchableOpacity>
+          </Link>
 
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={[styles.actionIcon, { backgroundColor: "#10b981" }]}>
+          <TouchableOpacity style={[styles.actionButton, styles.disabledButton]} disabled>
+            <View style={[styles.actionIcon, { backgroundColor: "#9ca3af" }]}>
               <Ionicons name="swap-horizontal" size={24} color="white" />
             </View>
-            <Text style={styles.actionText}>Transferir</Text>
+            <Text style={[styles.actionText, styles.disabledText]}>Transferir</Text>
+            <Text style={styles.developmentLabel}>Em breve</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.actionButton}>
-            <View style={[styles.actionIcon, { backgroundColor: "#f59e0b" }]}>
+          <TouchableOpacity style={[styles.actionButton, styles.disabledButton]} disabled>
+            <View style={[styles.actionIcon, { backgroundColor: "#9ca3af" }]}>
               <Ionicons name="analytics" size={24} color="white" />
             </View>
-            <Text style={styles.actionText}>Relatórios</Text>
+            <Text style={[styles.actionText, styles.disabledText]}>Relatórios</Text>
+            <Text style={styles.developmentLabel}>Em breve</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -363,5 +367,19 @@ const styles = StyleSheet.create({
 
   bottomSpacing: {
     height: 20,
+  },
+
+  disabledButton: {
+    opacity: 0.5,
+  },
+
+  disabledText: {
+    color: "#9ca3af",
+  },
+
+  developmentLabel: {
+    fontSize: 12,
+    color: "#9ca3af",
+    marginTop: 4,
   },
 });
